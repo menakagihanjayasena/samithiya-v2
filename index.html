@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>සෙනෙහස නැකම - පවුලේ සමිති කළමනාකරණ පද්ධතිය</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;600;700;900&display=swap');
+        body { font-family: 'Noto Sans Sinhala', sans-serif; }
+        
+        /* Ultra Modern 3D Hologram & Neon Glow Animations */
+        @keyframes hologramFloat {
+            0%, 100% { 
+                transform: translateY(0px) rotateX(10deg) rotateY(-10deg) scale(1); 
+                filter: drop-shadow(0 15px 25px rgba(59, 130, 246, 0.5));
+            }
+            50% { 
+                transform: translateY(-15px) rotateX(-5deg) rotateY(10deg) scale(1.05); 
+                filter: drop-shadow(0 25px 40px rgba(168, 85, 247, 0.8));
+            }
+        }
+        .animate-hologram {
+            animation: hologramFloat 4s ease-in-out infinite;
+            transform-style: preserve-3d;
+            perspective: 1200px;
+        }
+
+        @keyframes neonPulse {
+            0%, 100% { opacity: 0.4; transform: scale(0.95); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        .animate-neon-pulse {
+            animation: neonPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes neonShimmer {
+            0% { background-position: -300% center; }
+            100% { background-position: 300% center; }
+        }
+        .neon-shimmer-text {
+            background: linear-gradient(90deg, #60a5fa 0%, #ffffff 25%, #c084fc 50%, #ffffff 75%, #60a5fa 100%);
+            background-size: 300% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            animation: neonShimmer 4s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(1000%); }
+        }
+        .scanline-effect {
+            animation: scanline 2.5s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 min-h-screen font-sans text-gray-800">
+<a href="https://courageous-sherbet-a9768f.netlify.app/" target="_blank">අලුත් අප්ඩේට්ස් බලන්න මෙතන ක්ලික් කරන්න</a>
+    <!-- Stunning Modern 3D Holographic Intro / Loading Screen -->
+    <div id="introLoader" class="fixed inset-0 bg-slate-950 flex flex-col items-center justify-center z-50 transition-opacity duration-1000 p-4 overflow-hidden">
+        <!-- Background Glowing Neon Orbs -->
+        <div class="absolute w-96 h-96 bg-blue-600/20 rounded-full blur-3xl animate-neon-pulse pointer-events-none -top-20 -left-20"></div>
+        <div class="absolute w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-neon-pulse pointer-events-none -bottom-20 -right-20" style="animation-delay: 1.5s;"></div>
+
+        <div class="text-center space-y-8 relative z-10">
+            <!-- 3D Holographic Box with Glassmorphism -->
+            <div class="relative w-32 h-32 mx-auto">
+                <!-- Glowing Backdrop Ring -->
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl blur-xl opacity-75 animate-pulse"></div>
+                
+                <!-- Main Icon Card -->
+                <div class="relative w-32 h-32 bg-slate-900/80 backdrop-blur-2xl rounded-3xl flex items-center justify-center text-6xl shadow-2xl animate-hologram border border-white/20 overflow-hidden">
+                    <!-- Scanner Line Effect -->
+                    <div class="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent scanline-effect opacity-70"></div>
+                    👨‍👩‍👧‍👦
+                </div>
+            </div>
+            
+            <!-- Modern Neon Shimmering Title: සෙනෙහස නැකම -->
+            <div class="space-y-3">
+                <h1 class="text-3xl md:text-5xl font-black tracking-wider neon-shimmer-text">සෙනෙහස නැකම</h1>
+                <div class="inline-block bg-white/5 backdrop-blur-md border border-white/10 px-4 py-1.5 rounded-full shadow-inner">
+                    <p class="text-xs text-blue-300 font-bold tracking-widest uppercase">පවුලේ සියලු දෙනා එකම වහලක් යටට...</p>
+                </div>
+            </div>
+
+            <!-- Futuristic Glowing Progress Line -->
+            <div class="w-64 h-1 bg-white/10 rounded-full mx-auto overflow-hidden relative shadow-inner">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 animate-pulse rounded-full w-full"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unified Login Screen (Admin or Member) -->
+    <div id="loginModal" class="fixed inset-0 bg-blue-950 bg-opacity-90 backdrop-blur-md flex items-center justify-center p-4 z-40 hidden">
+        <div class="bg-white/95 backdrop-blur rounded-3xl shadow-2xl max-w-md w-full p-8 text-center border border-white/20 transform transition-all">
+            <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl mx-auto flex items-center justify-center text-3xl mb-4 shadow-inner">👨‍👩‍👧‍👦</div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-1">සෙනෙහස නැකම පිවිසුම</h2>
+            <p class="text-xs text-gray-500 mb-6">පරිපාලක හෝ සාමාජික ගිණුමෙන් ඇතුළත් වන්න</p>
+            
+            <form onsubmit="handleLogin(event)" class="space-y-4 text-left">
+                <div>
+                    <label class="text-xs font-bold text-gray-600 block mb-1">Username / රහස් අංකය:</label>
+                    <input type="text" id="loginUsername" placeholder="Username හෝ Admin Password" required class="w-full border border-gray-200 bg-gray-50/50 p-3.5 rounded-2xl text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition">
+                </div>
+                <div id="passwordFieldContainer">
+                    <label class="text-xs font-bold text-gray-600 block mb-1">Password:</label>
+                    <input type="password" id="loginPassword" placeholder="රහස් අංකය මෙතැන ටයිප් කරන්න" class="w-full border border-gray-200 bg-gray-50/50 p-3.5 rounded-2xl text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-blue-500/30 transition duration-200 mt-2">පද්ධතියට පිවිසෙන්න ✨</button>
+            </form>
+            <p id="loginError" class="text-red-500 text-xs mt-3 hidden font-semibold text-center bg-red-50 p-2.5 rounded-xl border border-red-100">⚠️ වැරදි විස්තරයක්! කරුණාකර නැවත උත්සාහ කරන්න.</p>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Wrapper (Hidden until login) -->
+    <div id="mainDashboard" class="hidden">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-blue-700 via-indigo-600 to-blue-800 text-white shadow-xl sticky top-0 z-30 backdrop-blur">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl">🌟</span>
+                    <h1 id="headerTitle" class="text-xl md:text-2xl font-black tracking-tight">සෙනෙහස නැකම</h1>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span id="userRoleBadge" class="text-xs bg-white/20 backdrop-blur px-3.5 py-1.5 rounded-full font-semibold hidden md:inline-block border border-white/10"></span>
+                    <button onclick="handleLogout()" class="bg-red-500/90 hover:bg-red-600 text-white text-xs font-bold px-4 py-2 rounded-xl transition shadow-md">නික්මීම (Logout) 🚪</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Container -->
+        <main class="container mx-auto px-4 md:px-6 py-8 space-y-8">
+            
+            <!-- Special Notification Banner -->
+            <div id="noticeBanner" class="bg-gradient-to-r from-amber-500 to-orange-500 text-white p-5 rounded-2xl shadow-xl hidden relative overflow-hidden">
+                <div class="absolute -right-4 -bottom-4 text-6xl opacity-10">🚨</div>
+                <div class="flex items-center justify-between relative z-10">
+                    <div>
+                        <h3 class="font-black text-sm tracking-wide uppercase bg-black/10 inline-block px-2.5 py-0.5 rounded-lg mb-1">විශේෂ නිවේදනයයි!</h3>
+                        <p id="noticeText" class="text-sm md:text-base font-medium mt-1"></p>
+                    </div>
+                    <button onclick="dismissNotice()" class="text-white/80 hover:text-white font-bold text-2xl bg-black/10 hover:bg-black/20 w-8 h-8 rounded-full flex items-center justify-center transition">&times;</button>
+                </div>
+            </div>
+
+            <!-- Member Personal Status View (Only visible when logged in as a member) -->
+            <div id="memberPersonalView" class="hidden bg-gradient-to-br from-blue-600 via-indigo-600 to-violet-700 text-white p-6 md:p-8 rounded-3xl shadow-2xl space-y-6 relative overflow-hidden">
+                <div class="absolute right-0 top-0 translate-x-8 -translate-y-8 w-64 h-64 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 relative z-10">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest bg-white/20 px-3 py-1 rounded-full font-bold">සාමාජික දසුන</span>
+                        <h2 class="text-2xl md:text-3xl font-black mt-2">ආයුබෝවන්, <span id="welcomeMemberName" class="underline decoration-amber-400 decoration-2"></span>! 👋</h2>
+                    </div>
+                    <span class="bg-white text-blue-900 px-4 py-2 rounded-2xl text-xs font-black shadow-lg">🆔 සාමාජික අංකය: <span id="welcomeMemberIdNum" class="text-blue-600 font-mono"></span></span>
+                </div>
+                <p class="text-sm text-blue-100 relative z-10">ඔබගේ මාසික ගෙවීම් තත්ත්වය සහ මඟහැරුණු මාස පහතින් බලාගත හැක.</p>
+                
+                <!-- Member View Grand Total & Monthly Breakdown Trigger Card -->
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 p-5 rounded-2xl flex flex-col md:flex-row justify-between items-center gap-4 relative z-10">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-emerald-500/20 text-emerald-300 rounded-xl flex items-center justify-center text-2xl font-bold">💰</div>
+                        <div>
+                            <h4 class="text-xs text-blue-200 font-bold uppercase">సමිතියේ සම්පූර්ණ එකතු වූ මුදල</h4>
+                            <p id="memberGrandTotalDisplay" class="text-2xl font-black text-white">Rs. 0</p>
+                        </div>
+                    </div>
+                    <button onclick="openMonthlyBreakdownModal()" class="w-full md:w-auto bg-white hover:bg-blue-50 text-blue-900 font-bold px-5 py-3 rounded-xl text-xs transition shadow-lg flex items-center justify-center gap-2">📊 සමිති මූල්‍ය වාර්තාව (Monthly Breakdown)</button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-white/95 backdrop-blur text-gray-800 p-5 rounded-2xl shadow-inner relative z-10">
+                    <div class="bg-green-50/70 p-4 rounded-xl border border-green-100">
+                        <h4 class="text-xs font-black text-green-700 uppercase tracking-wide mb-1 flex items-center gap-1.5">✅ ගෙවූ මාස (Paid Months)</h4>
+                        <p id="memberPaidMonthsList" class="text-sm font-semibold text-gray-700 mt-2">-</p>
+                    </div>
+                    <div class="bg-red-50/70 p-4 rounded-xl border border-red-100">
+                        <h4 class="text-xs font-black text-red-700 uppercase tracking-wide mb-1 flex items-center gap-1.5">❌ තවම ගෙවිය යුතු මාස (Pending / Higa)</h4>
+                        <p id="memberUnpaidMonthsList" class="text-sm font-semibold text-red-600 mt-2">-</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vision & Mission Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white/80 backdrop-blur p-6 md:p-7 rounded-3xl shadow-xl shadow-blue-500/5 border border-white/50 relative overflow-hidden group hover:shadow-2xl transition duration-300">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-blue-500"></div>
+                    <h3 class="text-lg font-black text-blue-600 mb-2 flex items-center gap-2">🔭 අපගේ දැක්ම (Vision)</h3>
+                    <p id="visionTextDisplay" class="text-gray-600 text-sm leading-relaxed italic mb-5">දැක්ම තවම ඇතුළත් කර නැත.</p>
+                    <button id="visionEditBtn" onclick="editVisionMission('vision')" class="text-xs bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white px-4 py-2 rounded-xl transition font-bold shadow-sm hidden">දැක්ම වෙනස් කරන්න ✍️</button>
+                </div>
+                <div class="bg-white/80 backdrop-blur p-6 md:p-7 rounded-3xl shadow-xl shadow-indigo-500/5 border border-white/50 relative overflow-hidden group hover:shadow-2xl transition duration-300">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-indigo-500"></div>
+                    <h3 class="text-lg font-black text-indigo-600 mb-2 flex items-center gap-2">🚀 අපගේ මෙහෙවර (Mission)</h3>
+                    <p id="missionTextDisplay" class="text-gray-600 text-sm leading-relaxed italic mb-5">මෙහෙවර තවම ඇතුළත් කර නැත.</p>
+                    <button id="missionEditBtn" onclick="editVisionMission('mission')" class="text-xs bg-indigo-50 text-indigo-600 hover:bg-indigo-600 hover:text-white px-4 py-2 rounded-xl transition font-bold shadow-sm hidden">මෙහෙවර වෙනස් කරන්න ✍️</button>
+                </div>
+            </div>
+
+            <!-- Dashboard Cards (Admin Only) with Monthly Breakdown Button -->
+            <div id="adminStatsCards" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white/80 backdrop-blur p-6 rounded-3xl shadow-xl shadow-blue-500/5 border border-white/50 flex items-center gap-4">
+                    <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl font-bold shadow-inner">👥</div>
+                    <div>
+                        <h3 class="text-gray-400 text-xs font-bold uppercase tracking-wider">මුළු සාමාජිකයින්</h3>
+                        <p id="totalMembers" class="text-3xl font-black text-gray-800 mt-1">0</p>
+                    </div>
+                </div>
+                
+                <!-- Grand Total Card with Monthly Click View -->
+                <div class="bg-white/80 backdrop-blur p-6 rounded-3xl shadow-xl shadow-green-500/5 border border-white/50 flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center text-2xl font-bold shadow-inner">💰</div>
+                        <div>
+                            <h3 class="text-gray-400 text-xs font-bold uppercase tracking-wider">සමස්ත එකතු වූ මුදල</h3>
+                            <p id="totalCollectedMoney" class="text-2xl md:text-3xl font-black text-green-600 mt-1">Rs. 0</p>
+                        </div>
+                    </div>
+                    <button onclick="openMonthlyBreakdownModal()" class="bg-green-50 hover:bg-green-100 text-green-700 p-2.5 rounded-xl text-xs font-bold transition shadow-sm" title="මාසික විස්තර බලන්න">📊 විස්තර</button>
+                </div>
+
+                <div class="bg-white/80 backdrop-blur p-6 rounded-3xl shadow-xl shadow-purple-500/5 border border-white/50 flex items-center gap-4">
+                    <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl font-bold shadow-inner">📅</div>
+                    <div>
+                        <h3 class="text-gray-400 text-xs font-bold uppercase tracking-wider">ඊළඟ රැස්වීම</h3>
+                        <p id="nextMeetingDisplay" class="text-xs md:text-sm font-bold text-gray-800 mt-1">රැස්වීමක් යොදා නැත</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Control Panel (For Notices & Meetings) -->
+            <div id="adminControlPanel" class="bg-white/90 backdrop-blur p-6 md:p-8 rounded-3xl shadow-xl border border-blue-50 grid grid-cols-1 md:grid-cols-2 gap-8 hidden">
+                <div>
+                    <h2 class="text-base font-bold text-gray-800 mb-3 flex items-center gap-2">📢 විශේෂ පණිවිඩයක් නිකුත් කරන්න</h2>
+                    <form id="noticeForm" class="space-y-3">
+                        <input type="text" id="noticeInput" placeholder="විශේෂ පණිවිඩය මෙතැන ලියන්න..." required class="w-full border border-gray-200 bg-gray-50/50 p-3.5 rounded-2xl text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition">
+                        <button type="submit" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 rounded-2xl text-sm shadow-md transition">පණිවිඩය යවන්න 🚀</button>
+                    </form>
+                </div>
+                <div>
+                    <h2 class="text-base font-bold text-gray-800 mb-3 flex items-center gap-2">📅 රැස්වීමක් යොදන්න</h2>
+                    <form id="meetingForm" class="space-y-3">
+                        <input type="text" id="meetingDesc" placeholder="රැස්වීම් විස්තරය (දිනය, වෙලාව, ස්ථානය)" required class="w-full border border-gray-200 bg-gray-50/50 p-3.5 rounded-2xl text-sm focus:ring-2 focus:ring-purple-500 focus:bg-white focus:outline-none transition">
+                        <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-2xl text-sm shadow-md transition">රැස්වීම ප්‍රකාශයට පත් කරන්න ✨</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Leadership & Committee Section -->
+            <div class="bg-white/80 backdrop-blur p-6 md:p-8 rounded-3xl shadow-xl border border-white/50">
+                <h2 class="text-xl font-black text-gray-900 mb-6 flex items-center gap-2">👑 නායකයින් සහ නිලධාරී මණ්ඩලය</h2>
+                <div id="adminLeaderFormContainer" class="hidden mb-6">
+                    <form id="leaderForm" class="grid grid-cols-1 md:grid-cols-4 gap-4 bg-gray-50/80 p-5 rounded-2xl border border-gray-200">
+                        <input type="text" id="leaderRole" placeholder="තනතුර (උදා: සභාපති)" required class="border border-gray-200 p-3 rounded-xl text-sm bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        <input type="text" id="leaderName" placeholder="නම" required class="border border-gray-200 p-3 rounded-xl text-sm bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        <input type="text" id="leaderPhone" placeholder="දුරකථන අංකය" required class="border border-gray-200 p-3 rounded-xl text-sm bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl text-sm shadow-md transition">නිලධාරියා එකතු කරන්න</button>
+                    </form>
+                </div>
+                <div id="leadersGrid" class="grid grid-cols-1 md:grid-cols-3 gap-5"></div>
+            </div>
+
+            <!-- WhatsApp Group Section -->
+            <div class="bg-white/80 backdrop-blur p-6 md:p-8 rounded-3xl shadow-xl border border-green-100 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div>
+                    <h2 class="text-lg font-black text-gray-900 flex items-center gap-2">💬 සමිති WhatsApp ගෲප්</h2>
+                    <p class="text-xs text-gray-500 mt-1">සියලුම සාමාජිකයින් එකම තැනකට සම්බන්ධ කරගැනීමේ නිල කණ්ඩායම.</p>
+                </div>
+                <div class="w-full md:w-auto">
+                    <div id="adminGroupLinkForm" class="hidden gap-3">
+                        <input type="text" id="groupLink" placeholder="https://chat.whatsapp.com/XXXXXX..." class="border border-gray-200 p-3 rounded-xl text-sm w-full md:w-80 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <button onclick="saveGroupLink()" class="bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-3 rounded-xl text-sm shadow-md transition whitespace-nowrap">සේව් කරන්න</button>
+                    </div>
+                    <div id="memberGroupLinkDisplay"></div>
+                </div>
+            </div>
+
+            <!-- Add Member & Credentials Section (Admin Only) -->
+            <div id="adminMemberSection" class="bg-white/80 backdrop-blur p-6 md:p-8 rounded-3xl shadow-xl border border-white/50 hidden">
+                <h2 class="text-xl font-black text-gray-900 mb-6 flex items-center gap-2">➕ නව සාමාජිකයෙක් එකතු කිරීම සහ Login විස්තර සැකසීම</h2>
+                <form id="memberForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <input type="text" id="memberIdNum" placeholder="සාමාජික අංකය (උදා: MEM-001)" required class="border border-gray-200 bg-gray-50/50 p-3.5 rounded-2xl text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition">
+                    <input type="text" id="name" placeholder="සාමාජිකයාගේ නම" required class="border border-gray-200 bg-gray-50/50 p-3.5 rounded-2xl text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition">
+                    <input type="text" id="phone" placeholder="දුරකථන (උදා: 0712345678)" required class="border border-gray-200 bg-gray-50/50 p-3.5 rounded-2xl text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition">
+                    <input type="text" id="address" placeholder="ලිපිනය / ගම" required class="border border-gray-200 bg-gray-50/50 p-3.5 rounded-2xl text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition">
+                    <input type="text" id="memberUsername" placeholder="සාමාජිකයාගේ Username එක" required class="border border-gray-200 bg-gray-50/50 p-3.5 rounded-2xl text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition">
+                    <input type="text" id="memberPassword" placeholder="සාමාජිකයාගේ Password එක" required class="border border-gray-200 bg-gray-50/50 p-3.5 rounded-2xl text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition">
+                    <select id="monthlyFee" class="border border-gray-200 bg-gray-50/50 p-3.5 rounded-2xl text-sm bg-white lg:col-span-2 focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+                        <option value="500">මාසික ගාස්තුව: රු. 500</option>
+                        <option value="1000">මාසික ගාස්තුව: රු. 1000</option>
+                    </select>
+                    <button type="submit" class="lg:col-span-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold p-3.5 rounded-2xl shadow-lg shadow-blue-500/20 transition">සාමාජිකයා සහ ගිණුම සාදන්න ✨</button>
+                </form>
+            </div>
+
+            <!-- Members Table (Full table for Admin) -->
+            <div id="adminMembersTableContainer" class="bg-white/90 backdrop-blur rounded-3xl shadow-xl overflow-hidden border border-white/50 hidden">
+                <div class="p-6 md:p-8 bg-gray-50/50 border-b border-gray-100">
+                    <h2 class="text-xl font-black text-gray-900">සාමාජික ලැයිස්තුව සහ මාසික ගිණුම් වාර්තාව</h2>
+                    <p class="text-xs text-gray-500 mt-0.5">මාසිකව මුදල් ගෙවූ විට අදාළ කොටුව ටික් (Tick) කරන්න.</p>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100/70 text-gray-600 text-xs font-black uppercase tracking-wider">
+                                <th class="p-4 border-b">සා. අංකය / නම / Login විස්තර</th>
+                                <th class="p-4 border-b text-center">ජන</th>
+                                <th class="p-4 border-b text-center">පෙබ</th>
+                                <th class="p-4 border-b text-center">මාර්</th>
+                                <th class="p-4 border-b text-center">අප්‍රේ</th>
+                                <th class="p-4 border-b text-center">මැයි</th>
+                                <th class="p-4 border-b text-center">ජූනි</th>
+                                <th class="p-4 border-b text-center">ජූලි</th>
+                                <th class="p-4 border-b text-center">අගෝ</th>
+                                <th class="p-4 border-b text-center">සැප්</th>
+                                <th class="p-4 border-b text-center">ඔක්</th>
+                                <th class="p-4 border-b text-center">නොවැ</th>
+                                <th class="p-4 border-b text-center">දෙසැ</th>
+                                <th class="p-4 border-b text-center">එකතුව (රු.)</th>
+                                <th class="p-4 border-b text-center">ක්‍රියාව</th>
+                            </tr>
+                        </thead>
+                        <tbody id="memberTableBody" class="text-gray-700 text-sm divide-y divide-gray-100"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Gallery Section -->
+            <div class="bg-white/80 backdrop-blur p-6 md:p-8 rounded-3xl shadow-xl border border-white/50">
+                <h2 class="text-xl font-black text-gray-900 mb-6 flex items-center gap-2">🖼️ ඡායාරූප සහ වීඩියෝ ගැලරිය</h2>
+                <div id="adminMediaForm" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 hidden bg-gray-50/80 p-5 rounded-2xl border border-gray-200">
+                    <input type="text" id="mediaTitle" placeholder="මාධ්‍ය විස්තරය (නම)" class="border border-gray-200 p-3 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <input type="text" id="mediaUrl" placeholder="ෆොටෝ හෝ වීඩියෝ ලින්ක් එක (URL)" class="border border-gray-200 p-3 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <button onclick="addMedia()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl text-sm shadow-md transition">ගැලරියට එකතු කරන්න</button>
+                </div>
+                <div id="mediaGrid" class="grid grid-cols-1 md:grid-cols-3 gap-5"></div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Receipt Modal -->
+    <div id="receiptModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full p-6 md:p-8 relative border border-white/20 transform transition-all">
+            <button onclick="closeReceipt()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-600 text-xl font-bold bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center transition">&times;</button>
+            <div id="receiptContent"></div>
+            <div class="mt-6 flex flex-col gap-2">
+                <button onclick="sendReceiptGroupWhatsApp()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-2xl text-sm shadow-md transition flex items-center justify-center gap-2">💬 ගෲප් එකට රිසිට් යවන්න</button>
+                <div class="flex gap-2">
+                    <button onclick="window.print()" class="flex-1 bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-4 rounded-2xl text-sm transition">ප්‍රින්ට් 🖨️</button>
+                    <button onclick="closeReceipt()" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-3 px-4 rounded-2xl text-sm transition">වහන්න</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Monthly Breakdown Modal -->
+    <div id="monthlyModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-6 md:p-8 relative border border-white/20 transform transition-all">
+            <button onclick="closeMonthlyModal()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-600 text-xl font-bold bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center transition">&times;</button>
+            <div class="text-center border-b border-gray-100 pb-4 mb-4">
+                <h3 class="text-xl font-black text-gray-900">මාසික එකතුවීම් විස්තරය (Monthly Breakdown)</h3>
+                <p class="text-xs text-gray-400 mt-0.5">සෑම මාසයකටම සමිති සාමාජිකයින්ගෙන් ලැබුණු මුදල් ප්‍රමාණය</p>
+            </div>
+            <div id="monthlyModalContent" class="space-y-2 max-h-96 overflow-y-auto pr-1"></div>
+            <div class="mt-6">
+                <button onclick="closeMonthlyModal()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 rounded-2xl text-sm transition">වසන්න</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        let currentUserRole = null; 
+        let currentLoggedInMember = null;
+
+        // Intro Loader Handler
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                const loader = document.getElementById('introLoader');
+                loader.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    checkExistingSession();
+                }, 1000);
+            }, 2500); 
+        });
+
+        function checkExistingSession() {
+            let role = sessionStorage.getItem('societyUserRole');
+            if (role === 'admin') {
+                currentUserRole = 'admin';
+                bootApp();
+            } else if (role === 'member') {
+                currentUserRole = 'member';
+                currentLoggedInMember = sessionStorage.getItem('societyMemberName');
+                bootApp();
+            } else {
+                document.getElementById('loginModal').classList.remove('hidden');
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const uInput = document.getElementById('loginUsername').value.trim();
+            const pInput = document.getElementById('loginPassword').value.trim();
+            const errorText = document.getElementById('loginError');
+
+            if (uInput === 'admin' && pInput === '1982') {
+                currentUserRole = 'admin';
+                sessionStorage.setItem('societyUserRole', 'admin');
+                sessionStorage.removeItem('societyMemberName');
+                bootApp();
+            } else {
+                let foundMember = members.find(m => m.username === uInput && m.password === pInput);
+                if (foundMember) {
+                    currentUserRole = 'member';
+                    currentLoggedInMember = foundMember.name;
+                    sessionStorage.setItem('societyUserRole', 'member');
+                    sessionStorage.setItem('societyMemberName', foundMember.name);
+                    bootApp();
+                } else {
+                    errorText.classList.remove('hidden');
+                    document.getElementById('loginPassword').value = '';
+                }
+            }
+        }
+
+        function handleLogout() {
+            sessionStorage.clear();
+            location.reload();
+        }
+
+        function bootApp() {
+            document.getElementById('loginModal').classList.add('hidden');
+            document.getElementById('mainDashboard').classList.remove('hidden');
+
+            // Calculate global numbers first so both admin and members have access
+            calculateGlobalTotals();
+
+            if (currentUserRole === 'admin') {
+                document.getElementById('headerTitle').innerText = 'සෙනෙහස නැකම (පාලක මණ්ඩලය)';
+                document.getElementById('userRoleBadge').innerText = '🛡️ Admin ගිණුම';
+                document.getElementById('visionEditBtn').classList.remove('hidden');
+                document.getElementById('missionEditBtn').classList.remove('hidden');
+                document.getElementById('adminStatsCards').classList.remove('hidden');
+                document.getElementById('adminControlPanel').classList.remove('hidden');
+                document.getElementById('adminLeaderFormContainer').classList.remove('hidden');
+                document.getElementById('adminGroupLinkForm').classList.remove('hidden');
+                document.getElementById('adminGroupLinkForm').classList.add('flex');
+                document.getElementById('adminMemberSection').classList.remove('hidden');
+                document.getElementById('adminMembersTableContainer').classList.remove('hidden');
+                document.getElementById('adminMediaForm').classList.remove('hidden');
+                document.getElementById('memberPersonalView').classList.add('hidden');
+                document.getElementById('memberGroupLinkDisplay').classList.add('hidden');
+            } else {
+                document.getElementById('headerTitle').innerText = 'සෙනෙහස නැකම';
+                document.getElementById('userRoleBadge').innerText = '👤 සාමාජික: ' + currentLoggedInMember;
+                document.getElementById('memberPersonalView').classList.remove('hidden');
+                renderMemberPersonalStats();
+                
+                let linkDisp = document.getElementById('memberGroupLinkDisplay');
+                if(savedGroupLink) {
+                    linkDisp.innerHTML = `<a href="${savedGroupLink}" target="_blank" class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-2xl text-sm shadow-lg shadow-green-500/25 transition">💬 සමිති WhatsApp ගෲප් එකට එකතු වන්න</a>`;
+                } else {
+                    linkDisp.innerHTML = `<p class="text-gray-400 text-sm">තවම WhatsApp ගෲප් ලින්ක් එකක් සේව් කර නැත.</p>`;
+                }
+            }
+
+            renderMembers();
+            renderMedia();
+            renderLeaders();
+        }
+
+        const memberForm = document.getElementById('memberForm');
+        const memberTableBody = document.getElementById('memberTableBody');
+        const totalMembers = document.getElementById('totalMembers');
+        const totalCollectedMoney = document.getElementById('totalCollectedMoney');
+        const receiptModal = document.getElementById('receiptModal');
+        const receiptContent = document.getElementById('receiptContent');
+        const groupLinkInput = document.getElementById('groupLink');
+        
+        const noticeForm = document.getElementById('noticeForm');
+        const noticeBanner = document.getElementById('noticeBanner');
+        const noticeText = document.getElementById('noticeText');
+        const noticeInput = document.getElementById('noticeInput');
+
+        const meetingForm = document.getElementById('meetingForm');
+        const nextMeetingDisplay = document.getElementById('nextMeetingDisplay');
+        const mediaGrid = document.getElementById('mediaGrid');
+
+        const leaderForm = document.getElementById('leaderForm');
+        const leadersGrid = document.getElementById('leadersGrid');
+
+        const visionTextDisplay = document.getElementById('visionTextDisplay');
+        const missionTextDisplay = document.getElementById('missionTextDisplay');
+
+        const monthNames = ["ජනවාරි", "පෙබරවාරි", "මාර්තු", "අප්‍රේල්", "මැයි", "ජූනි", "ජූලි", "අගෝස්තු", "සැප්තැම්බර්", "ඔක්තෝබර්", "නොවැම්බර්", "දෙසැම්බර්"];
+
+        let members = JSON.parse(localStorage.getItem('societyMembersFull')) || [];
+        let mediaItems = JSON.parse(localStorage.getItem('societyMedia')) || [];
+        let leaders = JSON.parse(localStorage.getItem('societyLeaders')) || [];
+        
+        let visionText = localStorage.getItem('societyVision') || 'පවුලේ සියලු සාමාජිකයින් අතර එකමුතුකම, සුහදත්වය සහ අන්‍යෝන්‍ය සහයෝගය වර්ධනය කරගත් ශක්තිමත් පවුල් සංවිධානයක් බිහි කිරීම.';
+        let missionText = localStorage.getItem('societyMission') || 'සාමාජිකයින්ගේ සුබසාධන කටයුතු නංවාලීම, හදිසි අවස්ථාවලදී පෙරමුණ ගැනීම සහ පරම්පරා අතර බැඳීම තවත් තහවුරු කිරීම.';
+
+        let savedGroupLink = localStorage.getItem('societyWhatsAppGroupLink') || '';
+        let currentNotice = localStorage.getItem('societyActiveNotice') || '';
+        let currentMeeting = localStorage.getItem('societyActiveMeeting') || '';
+        let activeReceiptData = null;
+
+        if(groupLinkInput) groupLinkInput.value = savedGroupLink;
+        if(visionTextDisplay) visionTextDisplay.innerText = visionText;
+        if(missionTextDisplay) missionTextDisplay.innerText = missionText;
+
+        if(currentNotice) {
+            noticeText.innerText = currentNotice;
+            noticeBanner.classList.remove('hidden');
+        }
+        if(currentMeeting) {
+            nextMeetingDisplay.innerText = currentMeeting;
+        }
+
+        function saveGroupLink() {
+            savedGroupLink = groupLinkInput.value.trim();
+            localStorage.setItem('societyWhatsAppGroupLink', savedGroupLink);
+            alert('වට්ස්ඇප් ගෲප් ලින්ක් එක සේව් විය!');
+        }
+
+        function editVisionMission(type) {
+            if(type === 'vision') {
+                let newVision = prompt("අපගේ දැක්ම (Vision) ඇතුළත් කරන්න:", visionText);
+                if(newVision !== null && newVision.trim() !== "") {
+                    visionText = newVision.trim();
+                    localStorage.setItem('societyVision', visionText);
+                    visionTextDisplay.innerText = visionText;
+                    alert('දැක්ම සාර්ථකව යාවත්කාලීන විය!');
+                }
+            } else if(type === 'mission') {
+                let newMission = prompt("අපගේ මෙහෙවර (Mission) ඇතුළත් කරන්න:", missionText);
+                if(newMission !== null && newMission.trim() !== "") {
+                    missionText = newMission.trim();
+                    localStorage.setItem('societyMission', missionText);
+                    missionTextDisplay.innerText = missionText;
+                    alert('මෙහෙවර සාර්ථකව යාවත්කාලීන විය!');
+                }
+            }
+        }
+
+        leaderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let role = document.getElementById('leaderRole').value.trim();
+            let name = document.getElementById('leaderName').value.trim();
+            let phone = document.getElementById('leaderPhone').value.trim();
+
+            leaders.push({ role, name, phone });
+            localStorage.setItem('societyLeaders', JSON.stringify(leaders));
+            leaderForm.reset();
+            renderLeaders();
+            alert('නව නිලධාරියා සාර්ථකව එකතු කරන ලදී!');
+        });
+
+        function renderLeaders() {
+            leadersGrid.innerHTML = '';
+            if(leaders.length === 0) {
+                leadersGrid.innerHTML = `<p class="text-gray-400 text-sm col-span-3 py-4 text-center">තවම නායකයින් එකතු කර නැත.</p>`;
+                return;
+            }
+            leaders.forEach((leader, index) => {
+                let deleteBtnHtml = (currentUserRole === 'admin') ? `<button onclick="deleteLeader(${index})" class="absolute top-3 right-3 text-red-400 hover:text-red-600 text-xs font-bold bg-red-50 hover:bg-red-100 px-2 py-1 rounded-lg transition">මකන්න ✕</button>` : '';
+                leadersGrid.innerHTML += `
+                    <div class="bg-gradient-to-br from-white to-gray-50/50 p-5 rounded-2xl border border-gray-100 shadow-sm relative group hover:shadow-md transition">
+                        <span class="text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-bold inline-block">${leader.role}</span>
+                        <h4 class="font-bold text-gray-900 text-base mt-3">${leader.name}</h4>
+                        <p class="text-xs text-gray-500 mt-1 flex items-center gap-1">📞 ${leader.phone}</p>
+                        ${deleteBtnHtml}
+                    </div>
+                `;
+            });
+        }
+
+        function deleteLeader(index) {
+            leaders.splice(index, 1);
+            localStorage.setItem('societyLeaders', JSON.stringify(leaders));
+            renderLeaders();
+        }
+
+        if(noticeForm) {
+            noticeForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                currentNotice = noticeInput.value;
+                localStorage.setItem('societyActiveNotice', currentNotice);
+                noticeText.innerText = currentNotice;
+                noticeBanner.classList.remove('hidden');
+                noticeInput.value = '';
+                alert('විශේෂ පණිවිඩය නිකුත් කරන ලදී!');
+            });
+        }
+
+        function dismissNotice() {
+            noticeBanner.classList.add('hidden');
+        }
+
+        if(meetingForm) {
+            meetingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                currentMeeting = document.getElementById('meetingDesc').value;
+                localStorage.setItem('societyActiveMeeting', currentMeeting);
+                nextMeetingDisplay.innerText = currentMeeting;
+                document.getElementById('meetingDesc').value = '';
+                alert('නව රැස්වීම ප්‍රකාශයට පත් කරන ලදී!');
+            });
+        }
+
+        function addMedia() {
+            let title = document.getElementById('mediaTitle').value.trim();
+            let url = document.getElementById('mediaUrl').value.trim();
+            if(!title || !url) {
+                alert('කරුණාකර මාතෘකාව සහ ලින්ක් එක දෙන්න.');
+                return;
+            }
+            mediaItems.push({ title, url });
+            localStorage.setItem('societyMedia', JSON.stringify(mediaItems));
+            document.getElementById('mediaTitle').value = '';
+            document.getElementById('mediaUrl').value = '';
+            renderMedia();
+        }
+
+        function renderMedia() {
+            mediaGrid.innerHTML = '';
+            if(mediaItems.length === 0) {
+                mediaGrid.innerHTML = `<p class="text-gray-400 text-sm col-span-3 py-4 text-center">තවම ඡායාරූප හෝ වීඩියෝ එකතු කර නැත.</p>`;
+                return;
+            }
+            mediaItems.forEach((item, index) => {
+                let adminDeleteBtn = (currentUserRole === 'admin') ? `<button onclick="deleteMedia(${index})" class="w-full bg-red-50 hover:bg-red-100 text-red-600 py-1.5 rounded-xl text-xs font-semibold transition mt-2">මකන්න</button>` : '';
+                mediaGrid.innerHTML += `
+                    <div class="bg-gray-50/60 border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                        <h4 class="font-bold text-gray-800 text-sm mb-3 truncate">🖼️ ${item.title}</h4>
+                        <a href="${item.url}" target="_blank" download class="block text-center bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-xl text-xs font-bold transition shadow-sm">බැලීම / ඩවුන්ලෝඩ් 📥</a>
+                        ${adminDeleteBtn}
+                    </div>
+                `;
+            });
+        }
+
+        function deleteMedia(index) {
+            mediaItems.splice(index, 1);
+            localStorage.setItem('societyMedia', JSON.stringify(mediaItems));
+            renderMedia();
+        }
+
+        function calculateGlobalTotals() {
+            let grandTotal = 0;
+            let monthlyTotals = new Array(12).fill(0);
+
+            members.forEach(m => {
+                let ticks = m.months.filter(Boolean).length;
+                grandTotal += ticks * m.fee;
+                
+                for(let mIdx = 0; mIdx < 12; mIdx++) {
+                    if(m.months[mIdx]) {
+                        monthlyTotals[mIdx] += m.fee;
+                    }
+                }
+            });
+
+            window.societyMonthlyTotals = monthlyTotals;
+            window.societyGrandTotal = grandTotal;
+
+            // Update Admin View Total if exists
+            if(totalCollectedMoney) {
+                totalCollectedMoney.innerText = 'Rs. ' + grandTotal.toLocaleString();
+            }
+            // Update Member View Total if exists
+            let memberGrandTotalDisplay = document.getElementById('memberGrandTotalDisplay');
+            if(memberGrandTotalDisplay) {
+                memberGrandTotalDisplay.innerText = 'Rs. ' + grandTotal.toLocaleString();
+            }
+        }
+
+        function renderMembers() {
+            if (currentUserRole === 'admin') {
+                memberTableBody.innerHTML = '';
+                if (members.length === 0) {
+                    memberTableBody.innerHTML = `<tr><td colspan="15" class="p-8 text-center text-gray-400">තවම සාමාජිකයින් ඇතුළත් කර නැත.</td></tr>`;
+                } else {
+                    members.forEach((member, index) => {
+                        let monthsHtml = '';
+                        let paidMonthsCount = 0;
+                        for (let m = 0; m < 12; m++) {
+                            let isChecked = member.months[m] ? 'checked' : '';
+                            if (member.months[m]) paidMonthsCount++;
+                            monthsHtml += `
+                                <td class="p-3 text-center border-b border-gray-100">
+                                    <input type="checkbox" ${isChecked} onclick="toggleMonth(${index}, ${m})" class="w-4 h-4 text-blue-600 rounded cursor-pointer accent-blue-600">
+                                </td>
+                            `;
+                        }
+                        let memberTotal = paidMonthsCount * member.fee;
+                        let displayMemId = member.memberIdNum ? member.memberIdNum : 'අංකයක් නැත';
+                        memberTableBody.innerHTML += `
+                            <tr class="hover:bg-blue-50/40 transition">
+                                <td class="p-4 border-b border-gray-100">
+                                    <span class="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-0.5 rounded-full font-mono font-bold">🆔 ${displayMemId}</span>
+                                    <div class="font-bold text-gray-900 mt-1">${member.name}</div>
+                                    <div class="text-xs text-gray-500">${member.phone} • ${member.address}</div>
+                                    <div class="text-xs text-blue-600 font-medium">User: ${member.username} / Pass: ${member.password}</div>
+                                    <div class="text-xs font-bold text-emerald-600 mt-1">රු. ${member.fee}</div>
+                                </td>
+                                ${monthsHtml}
+                                <td class="p-4 text-center border-b border-gray-100 font-black text-emerald-600">රු. ${memberTotal.toLocaleString()}</td>
+                                <td class="p-4 text-center border-b border-gray-100 space-y-1.5">
+                                    <button onclick="openReceipt(${index})" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-xl text-xs font-bold block w-full transition shadow-sm">රිසිට් 📄</button>
+                                    <button onclick="deleteMember(${index})" class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded-xl text-xs font-semibold block w-full transition">මකන්න</button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                }
+                totalMembers.innerText = members.length;
+            }
+            
+            calculateGlobalTotals();
+            localStorage.setItem('societyMembersFull', JSON.stringify(members));
+        }
+
+        if(memberForm) {
+            memberForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const memberIdNum = document.getElementById('memberIdNum').value.trim();
+                const name = document.getElementById('name').value.trim();
+                let phone = document.getElementById('phone').value.trim();
+                const address = document.getElementById('address').value.trim();
+                const username = document.getElementById('memberUsername').value.trim();
+                const password = document.getElementById('memberPassword').value.trim();
+                const fee = parseInt(document.getElementById('monthlyFee').value);
+                
+                if (phone.startsWith('0')) phone = '94' + phone.substring(1);
+                const months = new Array(12).fill(false);
+                
+                members.push({ memberIdNum, name, phone, address, username, password, fee, months });
+                memberForm.reset();
+                renderMembers();
+                alert('සාමාජිකයා සහ ගිණුම් විස්තර සාර්ථකව එකතු විය!');
+            });
+        }
+
+        function toggleMonth(memberIndex, monthIndex) {
+            members[memberIndex].months[monthIndex] = !members[memberIndex].months[monthIndex];
+            renderMembers();
+        }
+
+        function renderMemberPersonalStats() {
+            let member = members.find(m => m.name === currentLoggedInMember);
+            if (!member) return;
+
+            document.getElementById('welcomeMemberName').innerText = member.name;
+            document.getElementById('welcomeMemberIdNum').innerText = member.memberIdNum || 'නැත';
+
+            let paidList = [];
+            let unpaidList = [];
+
+            member.months.forEach((isPaid, idx) => {
+                if (isPaid) {
+                    paidList.push(monthNames[idx]);
+                } else {
+                    unpaidList.push(monthNames[idx]);
+                }
+            });
+
+            document.getElementById('memberPaidMonthsList').innerText = paidList.length > 0 ? paidList.join(', ') : "කිසිදු මාසයක් ගෙවා නැත";
+            document.getElementById('memberUnpaidMonthsList').innerText = unpaidList.length > 0 ? unpaidList.join(', ') : "සියලුම මාස ගෙවා අවසන්! 🎉";
+        }
+
+        function openMonthlyBreakdownModal() {
+            let totals = window.societyMonthlyTotals || new Array(12).fill(0);
+            let gTotal = window.societyGrandTotal || 0;
+            let contentHtml = '';
+
+            monthNames.forEach((mName, idx) => {
+                let mSum = totals[idx];
+                let colorClass = mSum > 0 ? 'text-emerald-600 bg-emerald-50 border-emerald-100' : 'text-gray-400 bg-gray-50 border-gray-100';
+                contentHtml += `
+                    <div class="flex justify-between items-center p-3 rounded-2xl border ${colorClass} text-sm">
+                        <span class="font-bold">📅 ${mName} මාසය</span>
+                        <span class="font-black">රු. ${mSum.toLocaleString()}</span>
+                    </div>
+                `;
+            });
+
+            contentHtml += `
+                <div class="flex justify-between items-center p-4 rounded-2xl bg-blue-600 text-white font-bold text-base mt-4 shadow-lg shadow-blue-500/20">
+                    <span>✨ සම්පූර්ණ සමස්ත එකතුව (Grand Total)</span>
+                    <span class="text-lg font-black">රු. ${gTotal.toLocaleString()}</span>
+                </div>
+            `;
+
+            document.getElementById('monthlyModalContent').innerHTML = contentHtml;
+            document.getElementById('monthlyModal').classList.remove('hidden');
+        }
+
+        function closeMonthlyModal() {
+            document.getElementById('monthlyModal').classList.add('hidden');
+        }
+
+        function openReceipt(index) {
+            let member = members[index];
+            let paidMonthsList = [];
+            member.months.forEach((isPaid, idx) => { if (isPaid) paidMonthsList.push(monthNames[idx]); });
+            let paidText = paidMonthsList.length > 0 ? paidMonthsList.join(', ') : "කිසිදු මාසයක් ගෙවා නැත";
+            let paidMonthsCount = member.months.filter(Boolean).length;
+            let totalAmount = paidMonthsCount * member.fee;
+
+            activeReceiptData = { memberIdNum: member.memberIdNum, name: member.name, phone: member.phone, fee: member.fee, paidText: paidText, totalAmount: totalAmount };
+            receiptContent.innerHTML = `
+                <div class="text-center border-b border-gray-100 pb-4 mb-4">
+                    <h3 class="text-xl font-black text-gray-900">සෙනෙහස නැකම</h3>
+                    <p class="text-xs text-gray-400 mt-0.5">නිල ගෙවීම් රිසිට්පත</p>
+                </div>
+                <div class="space-y-2.5 text-sm text-gray-700">
+                    <p class="flex justify-between border-b border-gray-50 pb-1.5"><strong>සාමාජික අංකය:</strong> <span class="font-mono text-indigo-600 font-bold">${member.memberIdNum || 'නැත'}</span></p>
+                    <p class="flex justify-between border-b border-gray-50 pb-1.5"><strong>සාමාජිකයා:</strong> <span class="font-bold">@${member.name}</span></p>
+                    <p class="flex justify-between border-b border-gray-50 pb-1.5"><strong>දුරකථන:</strong> <span>+${member.phone}</span></p>
+                    <p class="pt-1"><strong>ගෙවූ මාස:</strong><br><span class="text-xs text-gray-600 bg-gray-50 p-2.5 rounded-xl block mt-1 border border-gray-100">${paidText}</span></p>
+                    <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-2xl flex justify-between items-center mt-3">
+                        <strong class="text-emerald-800 text-xs uppercase">සමස්ත ගෙවීම:</strong> 
+                        <span class="text-lg font-black text-emerald-600">රු. ${totalAmount.toLocaleString()}</span>
+                    </div>
+                </div>
+            `;
+            receiptModal.classList.remove('hidden');
+        }
+
+        function closeReceipt() { receiptModal.classList.add('hidden'); }
+
+        function sendReceiptGroupWhatsApp() {
+            if (!activeReceiptData) return;
+            let message = `🌟 *සෙනෙහස නැකම - ගෙවීම් රිසිට්පත* 🌟\n\n🆔 සා. අංකය: ${activeReceiptData.memberIdNum || 'නැත'}\n👤 සාමාජිකයා: *@${activeReceiptData.name}*\n📅 ගෙවූ මාස: ${activeReceiptData.paidText}\n\n*✅ සමස්ත ගෙවීම: රු. ${activeReceiptData.totalAmount.toLocaleString()}*\n\nස්තූතියි!`;
+            let encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/?text=${encodedMessage}`, '_blank');
+        }
+
+        function deleteMember(index) {
+            if(confirm("මකා දැමීමට අවශ්‍ය බව විශ්වාසද?")) {
+                members.splice(index, 1);
+                renderMembers();
+            }
+        }
+    </script>
+    <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // Firebase Configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyC4JRXdlB6yXqy_js9BgWYPctBBINtpb2c",
+    authDomain: "samithiya-8ebf8.firebaseapp.com",
+    projectId: "samithiya-8ebf8",
+    storageBucket: "samithiya-8ebf8.firebasestorage.app",
+    messagingSenderId: "176510087529",
+    appId: "1:176510087529:web:f2c8c95907b7ed11460df8"
+  };
+
+  // Firebase Initialize කිරීම
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  // මුදල් ගනුදෙනු එකතු කිරීමේ Function එක
+  function addTransaction(name, amount, type) {
+    db.collection("transactions").add({
+      memberName: name,
+      amount: Number(amount),
+      type: type,
+      date: new Date().toLocaleDateString()
+    })
+    .then(() => {
+      alert("ගනුදෙනුව සාර්ථකව එකතු විය!");
+    })
+    .catch((error) => {
+      console.error("Error: ", error);
+    });
+  }
+
+  // Database එකෙන් සජීවීව (Live) දත්ත පෙන්වීම
+  db.collection("transactions").onSnapshot((snapshot) => {
+    let tableBody = document.getElementById("transactionTableBody");
+    if(!tableBody) return;
+    
+    tableBody.innerHTML = "";
+
+    snapshot.docs.forEach((doc) => {
+      let data = doc.data();
+      let row = `<tr>
+        <td>${data.date}</td>
+        <td>${data.memberName}</td>
+        <td>${data.type}</td>
+        <td>Rs. ${data.amount}</td>
+      </tr>`;
+      tableBody.innerHTML += row;
+    });
+  });
+</script>
+</body>
+</html>
