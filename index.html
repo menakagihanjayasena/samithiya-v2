@@ -10,7 +10,6 @@
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;600;700;900&display=swap');
         body { font-family: 'Noto Sans Sinhala', sans-serif; }
         
-        /* Ultra Modern 3D Hologram & Neon Glow Animations */
         @keyframes hologramFloat {
             0%, 100% { 
                 transform: translateY(0px) rotateX(10deg) rotateY(-10deg) scale(1); 
@@ -58,7 +57,7 @@
 </head>
 <body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 min-h-screen font-sans text-gray-800">
 
-    <!-- Stunning Modern 3D Holographic Intro / Loading Screen -->
+    <!-- Intro / Loading Screen -->
     <div id="introLoader" class="fixed inset-0 bg-slate-950 flex flex-col items-center justify-center z-50 transition-opacity duration-1000 p-4 overflow-hidden">
         <div class="absolute w-96 h-96 bg-blue-600/20 rounded-full blur-3xl animate-neon-pulse pointer-events-none -top-20 -left-20"></div>
         <div class="absolute w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-neon-pulse pointer-events-none -bottom-20 -right-20" style="animation-delay: 1.5s;"></div>
@@ -85,7 +84,7 @@
         </div>
     </div>
 
-    <!-- Unified Login Screen (Admin or Member) -->
+    <!-- Unified Login Screen -->
     <div id="loginModal" class="fixed inset-0 bg-blue-950 bg-opacity-90 backdrop-blur-md flex items-center justify-center p-4 z-40 hidden">
         <div class="bg-white/95 backdrop-blur rounded-3xl shadow-2xl max-w-md w-full p-8 text-center border border-white/20 transform transition-all">
             <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl mx-auto flex items-center justify-center text-3xl mb-4 shadow-inner">👨‍👩‍👧‍👦</div>
@@ -94,16 +93,16 @@
             
             <form onsubmit="handleLogin(event)" class="space-y-4 text-left">
                 <div>
-                    <label class="text-xs font-bold text-gray-600 block mb-1">Username / රහස් අංකය:</label>
-                    <input type="text" id="loginUsername" placeholder="Username හෝ Admin Password" required class="w-full border border-gray-200 bg-gray-50/50 p-3.5 rounded-2xl text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition">
+                    <label class="text-xs font-bold text-gray-600 block mb-1">Username:</label>
+                    <input type="text" id="loginUsername" placeholder="Username හෝ Admin" required class="w-full border border-gray-200 bg-gray-50/50 p-3.5 rounded-2xl text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition">
                 </div>
-                <div id="passwordFieldContainer">
+                <div>
                     <label class="text-xs font-bold text-gray-600 block mb-1">Password:</label>
-                    <input type="password" id="loginPassword" placeholder="රහස් අංකය මෙතැන ටයිප් කරන්න" class="w-full border border-gray-200 bg-gray-50/50 p-3.5 rounded-2xl text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition">
+                    <input type="password" id="loginPassword" placeholder="රහස් අංකය මෙතැන ටයිප් කරන්න" required class="w-full border border-gray-200 bg-gray-50/50 p-3.5 rounded-2xl text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition">
                 </div>
                 <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-blue-500/30 transition duration-200 mt-2">පද්ධතියට පිවිසෙන්න ✨</button>
             </form>
-            <p id="loginError" class="text-red-500 text-xs mt-3 hidden font-semibold text-center bg-red-50 p-2.5 rounded-xl border border-red-100">⚠️ වැරදි විස්තරයක්! කරුණාකර නැවත උත්සාහ කරන්න.</p>
+            <p id="loginError" class="text-red-500 text-xs mt-3 hidden font-semibold text-center bg-red-50 p-2.5 rounded-xl border border-red-100">⚠️ වැරදි Username හෝ Password එකක්! නැවත උත්සාහ කරන්න.</p>
         </div>
     </div>
 
@@ -190,7 +189,7 @@
             </div>
 
             <!-- Dashboard Cards (Admin Only) -->
-            <div id="adminStatsCards" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div id="adminStatsCards" class="grid grid-cols-1 md:grid-cols-3 gap-6 hidden">
                 <div class="bg-white/80 backdrop-blur p-6 rounded-3xl shadow-xl shadow-blue-500/5 border border-white/50 flex items-center gap-4">
                     <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl font-bold shadow-inner">👥</div>
                     <div>
@@ -284,7 +283,7 @@
                 </form>
             </div>
 
-            <!-- Members Table -->
+            <!-- Members Table (Admin Only) -->
             <div id="adminMembersTableContainer" class="bg-white/90 backdrop-blur rounded-3xl shadow-xl overflow-hidden border border-white/50 hidden">
                 <div class="p-6 md:p-8 bg-gray-50/50 border-b border-gray-100">
                     <h2 class="text-xl font-black text-gray-900">සාමාජික ලැයිස්තුව සහ මාසික ගිණුම් වාර්තාව</h2>
@@ -365,7 +364,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
     <script>
-        // 1. Firebase Configuration
+        // Firebase Config
         const firebaseConfig = {
             apiKey: "AIzaSyC4JRXdlB6yXqy_js9BgWYPctBBINtpb2c",
             authDomain: "samithiya-8ebf8.firebaseapp.com",
@@ -375,7 +374,6 @@
             appId: "1:176510087529:web:f2c8c95907b7ed11460df8"
         };
 
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
@@ -394,16 +392,19 @@
 
         const monthNames = ["ජනවාරි", "පෙබරවාරි", "මාර්තු", "අප්‍රේල්", "මැයි", "ජූනි", "ජූලි", "අගෝස්තු", "සැප්තැම්බර්", "ඔක්තෝබර්", "නොවැම්බර්", "දෙසැම්බර්"];
 
-        // Intro Loader
+        // Init
         window.addEventListener('load', function() {
+            setupFirebaseListeners();
             setTimeout(() => {
                 const loader = document.getElementById('introLoader');
-                loader.classList.add('opacity-0', 'pointer-events-none');
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                    checkExistingSession();
-                }, 1000);
-            }, 2500); 
+                if(loader) {
+                    loader.classList.add('opacity-0', 'pointer-events-none');
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                        checkExistingSession();
+                    }, 1000);
+                }
+            }, 1500); 
         });
 
         function checkExistingSession() {
@@ -426,23 +427,31 @@
             const pInput = document.getElementById('loginPassword').value.trim();
             const errorText = document.getElementById('loginError');
 
-            if (uInput === 'admin' && pInput === '1982') {
+            if (uInput.toLowerCase() === 'admin' && pInput === '1982') {
                 currentUserRole = 'admin';
                 sessionStorage.setItem('societyUserRole', 'admin');
                 sessionStorage.removeItem('societyMemberName');
+                if(errorText) errorText.classList.add('hidden');
+                bootApp();
+                return;
+            }
+
+            let foundMember = members.find(m => {
+                let mUser = (m.username || '').toString().trim().toLowerCase();
+                let mPass = (m.password || '').toString().trim();
+                return mUser === uInput.toLowerCase() && mPass === pInput;
+            });
+
+            if (foundMember) {
+                currentUserRole = 'member';
+                currentLoggedInMember = foundMember.name;
+                sessionStorage.setItem('societyUserRole', 'member');
+                sessionStorage.setItem('societyMemberName', foundMember.name);
+                if(errorText) errorText.classList.add('hidden');
                 bootApp();
             } else {
-                let foundMember = members.find(m => m.username === uInput && m.password === pInput);
-                if (foundMember) {
-                    currentUserRole = 'member';
-                    currentLoggedInMember = foundMember.name;
-                    sessionStorage.setItem('societyUserRole', 'member');
-                    sessionStorage.setItem('societyMemberName', foundMember.name);
-                    bootApp();
-                } else {
-                    errorText.classList.remove('hidden');
-                    document.getElementById('loginPassword').value = '';
-                }
+                if (errorText) errorText.classList.remove('hidden');
+                document.getElementById('loginPassword').value = '';
             }
         }
 
@@ -454,9 +463,6 @@
         function bootApp() {
             document.getElementById('loginModal').classList.add('hidden');
             document.getElementById('mainDashboard').classList.remove('hidden');
-
-            // Firebase සජීවී Listener (Realtime Listeners) ආරම්භ කිරීම
-            setupFirebaseListeners();
 
             if (currentUserRole === 'admin') {
                 document.getElementById('headerTitle').innerText = 'සෙනෙහස නැකම (පාලක මණ්ඩලය)';
@@ -477,32 +483,31 @@
                 document.getElementById('headerTitle').innerText = 'සෙනෙහස නැකම';
                 document.getElementById('userRoleBadge').innerText = '👤 සාමාජික: ' + currentLoggedInMember;
                 document.getElementById('memberPersonalView').classList.remove('hidden');
+                renderMemberPersonalStats();
             }
+
+            renderMembers();
+            renderLeaders();
+            renderMedia();
         }
 
-        // --- Firebase Realtime Database Syncing Functions ---
-
         function setupFirebaseListeners() {
-            // 1. Members Realtime Sync
             db.collection("members").onSnapshot(snapshot => {
                 members = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 renderMembers();
                 if(currentUserRole === 'member') renderMemberPersonalStats();
             });
 
-            // 2. Leaders Sync
             db.collection("leaders").onSnapshot(snapshot => {
                 leaders = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 renderLeaders();
             });
 
-            // 3. Media Sync
             db.collection("media").onSnapshot(snapshot => {
                 mediaItems = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 renderMedia();
             });
 
-            // 4. Settings & Notices Sync
             db.collection("settings").doc("general").onSnapshot(doc => {
                 if(doc.exists) {
                     let data = doc.data();
@@ -541,7 +546,6 @@
             });
         }
 
-        // Members CRUD
         document.getElementById('memberForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const memberIdNum = document.getElementById('memberIdNum').value.trim();
@@ -559,14 +563,14 @@
                 memberIdNum, name, phone, address, username, password, fee, months
             }).then(() => {
                 document.getElementById('memberForm').reset();
-                alert('සාමාජිකයා Firebase Database එකට සාර්ථකව එකතු විය!');
+                alert('සාමාජිකයා සාර්ථකව එකතු විය!');
             }).catch(err => alert("Error: " + err.message));
         });
 
         function toggleMonth(docId, monthIndex, currentStatus) {
             let memberDoc = members.find(m => m.id === docId);
             if(!memberDoc) return;
-            let updatedMonths = [...memberDoc.months];
+            let updatedMonths = [...(memberDoc.months || new Array(12).fill(false))];
             updatedMonths[monthIndex] = !currentStatus;
 
             db.collection("members").doc(docId).update({
@@ -579,68 +583,74 @@
                 db.collection("members").doc(docId).delete();
             }
         }
+function renderMembers() {
+    const memberTableBody = document.getElementById('memberTableBody');
+    const totalMembers = document.getElementById('totalMembers');
 
-        // Render Members
-        function renderMembers() {
-            const memberTableBody = document.getElementById('memberTableBody');
-            const totalMembers = document.getElementById('totalMembers');
+    // සාමාජිකයින්ගේ සාමාජික අංකය (memberIdNum) අනුව පිළිවෙලට Sort කිරීම
+    members.sort((a, b) => {
+        let idA = (a.memberIdNum || '').toString().trim();
+        let idB = (b.memberIdNum || '').toString().trim();
+        return idA.localeCompare(idB, undefined, { numeric: true, sensitivity: 'base' });
+    });
 
-            if (currentUserRole === 'admin' && memberTableBody) {
-                memberTableBody.innerHTML = '';
-                if (members.length === 0) {
-                    memberTableBody.innerHTML = `<tr><td colspan="15" class="p-8 text-center text-gray-400">තවම සාමාජිකයින් ඇතුළත් කර නැත.</td></tr>`;
-                } else {
-                    members.forEach((member) => {
-                        let monthsHtml = '';
-                        let paidMonthsCount = 0;
-                        for (let m = 0; m < 12; m++) {
-                            let isChecked = member.months[m] ? 'checked' : '';
-                            if (member.months[m]) paidMonthsCount++;
-                            monthsHtml += `
-                                <td class="p-3 text-center border-b border-gray-100">
-                                    <input type="checkbox" ${isChecked} onclick="toggleMonth('${member.id}', ${m}, ${!!member.months[m]})" class="w-4 h-4 text-blue-600 rounded cursor-pointer accent-blue-600">
-                                </td>
-                            `;
-                        }
-                        let memberTotal = paidMonthsCount * member.fee;
-                        let displayMemId = member.memberIdNum ? member.memberIdNum : 'අංකයක් නැත';
-                        memberTableBody.innerHTML += `
-                            <tr class="hover:bg-blue-50/40 transition">
-                                <td class="p-4 border-b border-gray-100">
-                                    <span class="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-0.5 rounded-full font-mono font-bold">🆔 ${displayMemId}</span>
-                                    <div class="font-bold text-gray-900 mt-1">${member.name}</div>
-                                    <div class="text-xs text-gray-500">${member.phone} • ${member.address}</div>
-                                    <div class="text-xs text-blue-600 font-medium">User: ${member.username} / Pass: ${member.password}</div>
-                                    <div class="text-xs font-bold text-emerald-600 mt-1">රු. ${member.fee}</div>
-                                </td>
-                                ${monthsHtml}
-                                <td class="p-4 text-center border-b border-gray-100 font-black text-emerald-600">රු. ${memberTotal.toLocaleString()}</td>
-                                <td class="p-4 text-center border-b border-gray-100 space-y-1.5">
-                                    <button onclick="openReceipt('${member.id}')" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-xl text-xs font-bold block w-full transition shadow-sm">රිසිට් 📄</button>
-                                    <button onclick="deleteMember('${member.id}')" class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded-xl text-xs font-semibold block w-full transition">මකන්න</button>
-                                </td>
-                            </tr>
-                        `;
-                    });
+    if (currentUserRole === 'admin' && memberTableBody) {
+        memberTableBody.innerHTML = '';
+        if (members.length === 0) {
+            memberTableBody.innerHTML = `<tr><td colspan="15" class="p-8 text-center text-gray-400 font-medium">තවම සාමාජිකයින් ඇතුළත් කර නැත.</td></tr>`;
+        } else {
+            members.forEach((member) => {
+                let monthsHtml = '';
+                let paidMonthsCount = 0;
+                let memberMonths = member.months || new Array(12).fill(false);
+                
+                for (let m = 0; m < 12; m++) {
+                    let isChecked = memberMonths[m] ? 'checked' : '';
+                    if (memberMonths[m]) paidMonthsCount++;
+                    monthsHtml += `
+                        <td class="p-3 text-center border-b border-gray-100">
+                            <input type="checkbox" ${isChecked} onclick="toggleMonth('${member.id}', ${m}, ${!!memberMonths[m]})" class="w-4 h-4 text-blue-600 rounded cursor-pointer accent-blue-600">
+                        </td>
+                    `;
                 }
-                if(totalMembers) totalMembers.innerText = members.length;
-            }
-            calculateGlobalTotals();
+                let memberTotal = paidMonthsCount * (member.fee || 0);
+                let displayMemId = member.memberIdNum ? member.memberIdNum : 'අංකයක් නැත';
+                memberTableBody.innerHTML += `
+                    <tr class="hover:bg-blue-50/40 transition">
+                        <td class="p-4 border-b border-gray-100">
+                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-0.5 rounded-full font-mono font-bold">🆔 ${displayMemId}</span>
+                            <div class="font-bold text-gray-900 mt-1">${member.name}</div>
+                            <div class="text-xs text-gray-500">${member.phone || ''} • ${member.address || ''}</div>
+                            <div class="text-xs text-blue-600 font-medium mt-0.5">User: <b>${member.username || 'නැත'}</b> | Pass: <b>${member.password || 'නැත'}</b></div>
+                            <div class="text-xs font-bold text-emerald-600 mt-1">ගාස්තුව: රු. ${member.fee || 0}</div>
+                        </td>
+                        ${monthsHtml}
+                        <td class="p-4 text-center border-b border-gray-100 font-black text-emerald-600">රු. ${memberTotal.toLocaleString()}</td>
+                        <td class="p-4 text-center border-b border-gray-100 space-y-1.5">
+                            <button onclick="openReceipt('${member.id}')" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-xl text-xs font-bold block w-full transition shadow-sm">රිසිට් 📄</button>
+                            <button onclick="deleteMember('${member.id}')" class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded-xl text-xs font-semibold block w-full transition">මකන්න</button>
+                        </td>
+                    </tr>
+                `;
+            });
         }
+        if(totalMembers) totalMembers.innerText = members.length;
+    }
+    calculateGlobalTotals();
+}
 
         function calculateGlobalTotals() {
             let grandTotal = 0;
             let monthlyTotals = new Array(12).fill(0);
 
             members.forEach(m => {
-                if(m.months && Array.isArray(m.months)) {
-                    let ticks = m.months.filter(Boolean).length;
-                    grandTotal += ticks * (m.fee || 0);
-                    
-                    for(let mIdx = 0; mIdx < 12; mIdx++) {
-                        if(m.months[mIdx]) {
-                            monthlyTotals[mIdx] += (m.fee || 0);
-                        }
+                let mMonths = m.months || new Array(12).fill(false);
+                let ticks = mMonths.filter(Boolean).length;
+                grandTotal += ticks * (m.fee || 0);
+                
+                for(let mIdx = 0; mIdx < 12; mIdx++) {
+                    if(mMonths[mIdx]) {
+                        monthlyTotals[mIdx] += (m.fee || 0);
                     }
                 }
             });
@@ -655,7 +665,6 @@
             if(memberGrandTotalDisplay) memberGrandTotalDisplay.innerText = 'Rs. ' + grandTotal.toLocaleString();
         }
 
-        // Leader Functions
         document.getElementById('leaderForm').addEventListener('submit', function(e) {
             e.preventDefault();
             let role = document.getElementById('leaderRole').value.trim();
@@ -669,6 +678,7 @@
 
         function renderLeaders() {
             const leadersGrid = document.getElementById('leadersGrid');
+            if (!leadersGrid) return;
             leadersGrid.innerHTML = '';
             if(leaders.length === 0) {
                 leadersGrid.innerHTML = `<p class="text-gray-400 text-sm col-span-3 py-4 text-center">තවම නායකයින් එකතු කර නැත.</p>`;
@@ -691,7 +701,6 @@
             db.collection("leaders").doc(docId).delete();
         }
 
-        // Media Functions
         function addMedia() {
             let title = document.getElementById('mediaTitle').value.trim();
             let url = document.getElementById('mediaUrl').value.trim();
@@ -705,6 +714,7 @@
 
         function renderMedia() {
             const mediaGrid = document.getElementById('mediaGrid');
+            if(!mediaGrid) return;
             mediaGrid.innerHTML = '';
             if(mediaItems.length === 0) {
                 mediaGrid.innerHTML = `<p class="text-gray-400 text-sm col-span-3 py-4 text-center">තවම ඡායාරූප හෝ වීඩියෝ එකතු කර නැත.</p>`;
@@ -726,7 +736,6 @@
             db.collection("media").doc(docId).delete();
         }
 
-        // Settings / Vision / Mission / Notices Sync Functions
         function saveGroupLink() {
             let link = document.getElementById('groupLink').value.trim();
             db.collection("settings").doc("general").set({ groupLink: link }, { merge: true })
@@ -778,19 +787,17 @@
 
             let paidList = [];
             let unpaidList = [];
+            let memberMonths = member.months || new Array(12).fill(false);
 
-            if(member.months) {
-                member.months.forEach((isPaid, idx) => {
-                    if (isPaid) paidList.push(monthNames[idx]);
-                    else unpaidList.push(monthNames[idx]);
-                });
-            }
+            memberMonths.forEach((isPaid, idx) => {
+                if (isPaid) paidList.push(monthNames[idx]);
+                else unpaidList.push(monthNames[idx]);
+            });
 
             document.getElementById('memberPaidMonthsList').innerText = paidList.length > 0 ? paidList.join(', ') : "කිසිදු මාසයක් ගෙවා නැත";
             document.getElementById('memberUnpaidMonthsList').innerText = unpaidList.length > 0 ? unpaidList.join(', ') : "සියලුම මාස ගෙවා අවසන්! 🎉";
         }
 
-        // Modals Logic
         function openMonthlyBreakdownModal() {
             let totals = window.societyMonthlyTotals || new Array(12).fill(0);
             let gTotal = window.societyGrandTotal || 0;
@@ -827,12 +834,12 @@
             if(!member) return;
             
             let paidMonthsList = [];
-            if(member.months) {
-                member.months.forEach((isPaid, idx) => { if (isPaid) paidMonthsList.push(monthNames[idx]); });
-            }
+            let memberMonths = member.months || new Array(12).fill(false);
+            memberMonths.forEach((isPaid, idx) => { if (isPaid) paidMonthsList.push(monthNames[idx]); });
+
             let paidText = paidMonthsList.length > 0 ? paidMonthsList.join(', ') : "කිසිදු මාසයක් ගෙවා නැත";
-            let paidMonthsCount = member.months ? member.months.filter(Boolean).length : 0;
-            let totalAmount = paidMonthsCount * member.fee;
+            let paidMonthsCount = memberMonths.filter(Boolean).length;
+            let totalAmount = paidMonthsCount * (member.fee || 0);
 
             activeReceiptData = { memberIdNum: member.memberIdNum, name: member.name, phone: member.phone, fee: member.fee, paidText: paidText, totalAmount: totalAmount };
             document.getElementById('receiptContent').innerHTML = `
@@ -843,7 +850,7 @@
                 <div class="space-y-2.5 text-sm text-gray-700">
                     <p class="flex justify-between border-b border-gray-50 pb-1.5"><strong>සාමාජික අංකය:</strong> <span class="font-mono text-indigo-600 font-bold">${member.memberIdNum || 'නැත'}</span></p>
                     <p class="flex justify-between border-b border-gray-50 pb-1.5"><strong>සාමාජිකයා:</strong> <span class="font-bold">@${member.name}</span></p>
-                    <p class="flex justify-between border-b border-gray-50 pb-1.5"><strong>දුරකථන:</strong> <span>+${member.phone}</span></p>
+                    <p class="flex justify-between border-b border-gray-50 pb-1.5"><strong>දුරකථන:</strong> <span>+${member.phone || ''}</span></p>
                     <p class="pt-1"><strong>ගෙවූ මාස:</strong><br><span class="text-xs text-gray-600 bg-gray-50 p-2.5 rounded-xl block mt-1 border border-gray-100">${paidText}</span></p>
                     <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-2xl flex justify-between items-center mt-3">
                         <strong class="text-emerald-800 text-xs uppercase">සමස්ත ගෙවීම:</strong> 
